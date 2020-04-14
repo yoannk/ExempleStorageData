@@ -9,6 +9,8 @@ import android.view.View;
 import android.widget.Button;
 import android.widget.Toast;
 
+import com.example.exemplestoragedata.Utilities.Constants;
+
 import java.io.BufferedReader;
 import java.io.FileInputStream;
 import java.io.FileNotFoundException;
@@ -33,13 +35,11 @@ public class MainActivity extends AppCompatActivity {
         btnSaveInternalStorage.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
-                String nomFichier = "FichierData.txt";
-
                 String data = "Bonjour toto !";
 
                 try {
                     // on ouvre un fichier pour écrire à l'intérieur
-                    FileOutputStream fos = openFileOutput(nomFichier, MODE_PRIVATE);
+                    FileOutputStream fos = openFileOutput(Constants.NOM_FICHIER, MODE_PRIVATE);
                     // on écrit nos données
                     fos.write(data.getBytes());
                     // on ferme le fichier
@@ -55,11 +55,10 @@ public class MainActivity extends AppCompatActivity {
         btnOpenInternalStorage.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
-                String nomFichier = "FichierData.txt";
                 StringBuilder sb = new StringBuilder();
 
                 try {
-                    FileInputStream fis = openFileInput(nomFichier);
+                    FileInputStream fis = openFileInput(Constants.NOM_FICHIER);
                     InputStreamReader inputStreamReader = new InputStreamReader(fis);
                     BufferedReader bufferedReader = new BufferedReader(inputStreamReader);
 
