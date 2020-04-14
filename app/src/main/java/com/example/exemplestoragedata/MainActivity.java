@@ -12,6 +12,7 @@ import android.widget.Toast;
 import com.example.exemplestoragedata.Entities.Adherent;
 import com.example.exemplestoragedata.Utilities.Constants;
 import com.google.gson.Gson;
+import com.google.gson.JsonSyntaxException;
 
 import java.io.BufferedReader;
 import java.io.FileInputStream;
@@ -66,6 +67,7 @@ public class MainActivity extends AppCompatActivity {
             public void onClick(View v) {
                 StringBuilder sb = new StringBuilder();
 
+
                 try {
                     FileInputStream fis = openFileInput(Constants.NOM_FICHIER);
                     InputStreamReader inputStreamReader = new InputStreamReader(fis);
@@ -84,7 +86,12 @@ public class MainActivity extends AppCompatActivity {
                     Log.e("Erreur Open Data", e.getMessage());
                 }
 
-                Toast.makeText(context, sb.toString(), Toast.LENGTH_SHORT).show();
+                try {
+                    Adherent adherent = gson.fromJson(sb.toString(), Adherent.class);
+                    Toast.makeText(context, "Bonjour " + adherent.getPrenom() + " " + adherent.getNom(), Toast.LENGTH_SHORT).show();
+                } catch (JsonSyntaxException e) {
+                    Toast.makeText(context, "JSON malformé", Toast.LENGTH_SHORT).show();
+                }
             }
         });
     }
