@@ -11,6 +11,11 @@
         android:id="@+id/btnSaveInternalStorage"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
-        android:layout_weight="1"
         android:text="Save Internal" />
+
+    <Button
+        android:id="@+id/btnOpenInternalStorage"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:text="Open Internal" />
 </LinearLayout>
